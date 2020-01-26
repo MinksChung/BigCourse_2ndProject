@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LoginPopover Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ <style>
+  /* Popover */
+  .popover {
+    border: 2px solid #7F2BFF;
+  }
+  /* Popover Header */
+  .popover-title {
+    background-color: #6ADEDA; 
+    color: #FFFFFF; 
+    font-size: 18px;
+    text-align:center;
+  }
+  /* Popover Body */
+  .popover-content {
+    background-color: white;
+    color: #FFFFFF;
+    padding: 15px;
+  }
+  /* Popover Arrow */
+  .arrow {
+    border-right-color: #7F2BFF !important;
+  }
+ </style> 
+  
+</head>
+<body>
+
+<div class="well">
+    <button type="button" id="login" class="btn" data-placement="left">Login Form</button>
+</div>
+<div id="myForm" class="hide" >
+    <form action="" id="" method="get">
+        <div>
+            아이디: <input type="text" name="id" id="id" class="form-control input-md">
+            비밀번호: <input type="password" name="pw" id="pw" class="form-control input-md"><br>
+            <button type="button" class="btn btn-primary" data-loading-text="Sending info.."><em class="icon-ok"></em>Login</button>
+        </div>
+    </form>
+</div>
+<div id="result"></div>
+
+<script>
+$(function(){
+    $('#login').popover({
+       
+        placement: 'bottom',
+        title: 'Popover Form',
+        html:true,
+        content:  $('#myForm').html()
+    }).on('click', function(){
+      // had to put it within the on click action so it grabs the correct info on submit
+      $('.btn-primary').click(function(){
+       $('#result').after("form submitted by " + $('#id').val())
+        $.post('/echo/html/',  {
+            id: $('#id').val(),
+            pw: $('#pw').val(),
+        }, function(r){
+          $('#pops').popover('hide')
+          $('#result').html('resonse from server could be here' )
+        })
+      })
+  })
+})
+</script>
+
+</body>
+</html>

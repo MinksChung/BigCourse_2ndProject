@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <script src="modal.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>어디서뭐먹지?</title>
+    <style>
+    
+        /* The Modal (background) */
+        .modal {
+        	font-family:"BM Dohyeon";
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */                          
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    
+        body {
+            font-family: "BM Dohyeon";
+            padding-left: 3rem;
+            padding-top: 3rem;
+
+        }
+
+        .page {
+            display: flex;
+            margin: 1rem;
+            padding: 1rem;
+        }
+
+        .front {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem 4rem 4rem 4rem;
+        }
+
+        .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+
+        /*검색바설정부.*/
+        .searchTerm {
+            width: 100%;
+            border: 3px solid #00B4CC;
+            border-right: none;
+            padding: 5px;
+            height: 20px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+        .searchTerm:focus {
+            color: #00B4CC;
+        }
+
+        .searchButton {
+            width: 80px;
+            height: 55px;
+            background: #088A85;
+            text-align: center;
+            border-radius: 0 10px 10px 0;
+            font-size: 15px;
+            font-family: "BM DoHyeon";
+            color: white;
+        }
+
+        .wrap {
+            width: 30%;
+            position: absolute;
+            top: 13%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .box {
+            display: flex;
+            position: relative;
+        }
+
+        .boxpic {
+            padding: 1rem 1rem;
+            border-radius: 50%;
+            height: 25rem;
+            width: 19rem;
+        }
+
+        .boxtext {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.2rem;
+            color: black;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover .boxpic {
+            opacity: 1;
+        }
+
+        a:hover .boxtext {
+            display: none;
+        }
+
+        @media ( max-width: 800px) {
+            .boxpic {
+                height: 5rem;
+                width: 5rem;
+                font-size: 2rem;
+                color: black
+            }
+
+            .boxtext {
+                font-size: 2rem;
+                color: black;
+            }
+        }
+
+        .cardText {
+            position: absolute;
+            top: 65%;
+            font-size: 20px;
+            padding: 25px;
+        }
+
+        .cardTitle {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            font-size: 40px;
+
+        }
+    </style>
+</head>
+
+
+<body bgcolor="#6ADEDA">
+<header>
+    <div class="nav-wrapper">
+        <a href="index.html"> <img
+                height="120rem" ;
+                width="500rem" ;
+                src="Imgs/logo.gif">
+        </a>
+        <div class="wrap">
+            <div class="search" style="border: 2px solid #088A85; border-radius: 10px;">
+                <input type="text" class="searchTerm" placeholder="검색어를 입력하세요.">
+                <button type="submit" class="searchButton">
+                    검색
+                </button>
+            </div>
+        </div>
+
+		<div class="input-field" style="position: absolute; top:10%; left:75%;">
+			<a class="waves-effect waves-light btn">회원가입</a>
+			<a class="waves-effect waves-light btn">로그인</a>
+			<a class="waves-effect waves-light btn" style="background-color: indigo;">후기게시판</a>
+		</div>
+
+
+    </div>
+    </div>
+</header>
+
+<main>
+    <section class="front" style="padding-left:1.5rem; padding-right: 1.5rem;">
+
+
+        <div class="card" style="width:335px; height: 450px;margin-left: 50px;margin-right: 25px;">
+        <a href="">
+            <div class="boxpic">
+                <img src="Imgs/1.png">
+                <span class="card-title">Card Title</span>
+            </div>
+            <div class="cardText">
+                <p>I am a very simple card. I am good at containing small bits of information.</p>
+            </div>
+        </a>
+        </div>
+        
+
+
+ <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+ 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>                                                               
+        <p>Some text in the Modal..</p>
+      </div>
+ 
+    </div>
+<script>
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];                                          
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+
+
+</section>
+</main>
+</body>
+</html>

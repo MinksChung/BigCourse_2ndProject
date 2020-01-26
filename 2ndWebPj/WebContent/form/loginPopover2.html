@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LoginPopover Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ <style>
+ .form-control {width:120px;}
+.popover {max-width:290px;}	
+</style>
+
+<body>
+<div class="container">
+  <h3>Bootstrap 3 Popover Form Example</h3>
+
+    <li><a data-placement="bottom" data-toggle="popover" data-title="Login" data-container="body" 
+    type="button" data-html="true" href="#" id="login">Login</a></li>
+    <div id="popover-content" class="hide">
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          I&nbsp;D :<input type="text" placeholder="id" class="form-control" maxlength="16">
+          PW:<input type="password" placeholder="pw" class="form-control" maxlength="14">
+          <button type="submit" class="btn btn-primary">Login »</button>                                  
+        </div>
+      </form>
+      <script type="text/javascript">
+      $("[data-toggle=popover]").popover({
+    	    html: true, 
+    		content: function() {
+    	          return $('#popover-content').html();
+    	        }
+    	});
+      </script>
+    </div>
+  
+</div>
+</body>
+</html>

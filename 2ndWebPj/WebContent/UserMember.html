@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"
+	charset="UTF-8">
+<link href="css/UserMember.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		var id_check = 1;
+		$("#user_id").keyup(function() {
+			var user_id = $(this).val();
+			$.ajax({
+				url : "idsearch.jsp",
+				data : {
+					id : user_id
+				},
+				success : function(result) {
+					if (result == 0) {
+						$("#check_id").text("사용중인 아이디입니다.");
+						id_check = 1;
+					} else {
+						$("#check_id").text("사용가능한 아이디입니다");
+						id_check = 0;
+					}
+				}
+			});
+
+		});
+		var pw_check = 1;
+		$("#repw").keyup(function() {
+			var pw = $("#pw").val();
+			var repw = $("#repw").val();
+			if (pw == repw) {
+				pw_check = 0;
+				$("#check_pw").text("비밀번호가 일치합니다.");
+			} else {
+				pw_check = 1;
+				$("#check_pw").text("비밀번호가 일치하지않습니다.");
+			}
+		});
+		$("#btn").click(function() {
+			if (pw_check == 1 || id_check == 1) {
+				return false;
+				alter("가입 조건에 맞지 않습니다.");
+			} else {
+				$("#btn").submit();
+			}
+		})
+
+	});
+</script>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>회원가입</h1>
+		<hr>
+		<form action="success.jsp">
+			<div class="form-group">
+				<label for="id"><b>아이디</b></label> <input type="text" id="user_id"
+					placeholder="Enter ID" name="id" required>
+				<div id=check_id></div>
+			</div>
+			<div>
+				<br>
+			</div>
+			<div>
+				<label for="psw"><b>비밀번호</b></label> <input type="password"
+					placeholder="Enter Password" name="pw" id="pw" required>
+			</div>
+			<div>
+				<label for="psw-repeat"><b>비밀번호 재확인</b></label> <input
+					type="password" placeholder="Repeat Password" name="repw" id="repw"
+					required>
+			</div>
+			<div id=check_pw></div>
+
+			<div>
+				<label for="email"><b>이름</b></label> <input type="text" id="name"
+					placeholder="Enter Name" name="name" required>
+			</div>
+			<div>
+				<label for="email"><b>전화번호</b></label> <input type="text" id="phone"
+					placeholder="Enter phone number" name="phone" required>
+			</div>
+			<div>
+				<label for="email"><b>이메일</b></label> <input type="text" id="email"
+					placeholder="Enter Email" name="email" required>
+			</div>
+			<hr>
+			<div id="btn1">
+				<button type="submit" class="registerbtn" id="btn">회원가입</button>
+			</div>
+	</div>
+	</form>
+
+</body>
+
+</html>
